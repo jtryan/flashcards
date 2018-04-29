@@ -1,26 +1,26 @@
 import {
     GET_DECKS,
     GET_DECK,
-    SAVE_FILE_DECK,
+    CREATE_DECK,
     ADD_CARD_TO_DECK
-} from '../actions'
+} from '../actions/action_types'
 
-function entries (state = {}, action) {
+function decks (state = {}, action) {
   switch (action.type) {
     case GET_DECKS:
       return {
         ...state,
-        ...action.entries,
+        ...action.decks,
       }
     case GET_DECK:
       return {
         ...state,
-        ...action.entry
+        ...action.deck
       }
-      case SAVE_FILE_DECK:
+      case CREATE_DECK:
       return {
         ...state,
-        ...action.entry
+        ...action.title
       }
       case ADD_CARD_TO_DECK:
       return {
@@ -32,4 +32,4 @@ function entries (state = {}, action) {
   }
 }
   
-export default entries
+export default decks
