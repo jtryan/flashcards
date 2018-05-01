@@ -58,6 +58,7 @@ function mapStateToProps(state) {
 const styles = StyleSheet.create({
 	deck: {
     flex: 1,
+    padding: 20,
 		height: Dimensions.get('window').height
 	},
 });

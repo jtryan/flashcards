@@ -3,6 +3,7 @@ import { TextInput, Text, TouchableOpacity, StyleSheet, Alert, View } from 'reac
 import { addCardToDeck } from '../actions'
 import { addCard } from '../utils/api'
 import { connect } from 'react-redux'
+import { black, white, green } from '../utils/colors'
 
 class AddQuestion extends Component {
 
@@ -41,8 +42,10 @@ class AddQuestion extends Component {
           }
         ],
     )
-		this.setState({question: '', answer: ''})
-	
+		this.setState({
+      question: '', 
+      answer: ''
+    })
   }
 
 	render() {
@@ -50,27 +53,29 @@ class AddQuestion extends Component {
 
 		return (
 
-				<View syle={style.container}>
-					<Text>Question</Text>
+				<View style={styles.container}>
+					<Text style={[styles.title, {marginTop: 64}]}>Question</Text>
 					<TextInput
-							style={{height: 40}}
+							style={styles.textInput}
 							placeholder="Type question here"
 							value={this.state.question}
-							onChangeText={(question) => this.setState({question})}
+              onChangeText={(question) => this.setState({question})}
+              multiline={true}
 					/>
-          <Text>Answer</Text>
+          <Text style={[styles.title, {marginTop: 64}]}>Answer</Text>
 					<TextInput
-							style={{height: 40}}
+							style={styles.textInput}
 							placeholder="Type answer here"
 							value={this.state.answer}
-							onChangeText={(answer) => this.setState({answer})}
+              onChangeText={(answer) => this.setState({answer})}
+              multiline={true}
 					/>
 
 					<TouchableOpacity
-							style={style.okButton}
+							style={styles.okButton}
 							onPress={this.verifyQnA}
 					>
-						<Text>Submit</Text>
+						<Text style={styles.btnText}>Submit</Text>
 					</TouchableOpacity>
 
 				</View>
@@ -80,26 +85,50 @@ class AddQuestion extends Component {
 }
 
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		padding: 20
+    flex: 1,
+    alignContent: 'center',
+    alignItems: 'center'
 	},
 	okButton: {
-		height: 50,
-		backgroundColor: 'white',
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginLeft: 40,
-		marginRight: 40,
-		padding: 10,
-		borderRadius: 4
-	}
+		height: 60,
+    width: 200,
+    backgroundColor: green,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+    marginTop: 48,
+    borderRadius: 3
+  },
+  title: {
+    fontSize: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: black
+  },
+  btnText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  textInput: {
+    height: 40,
+    width: 300,
+    fontSize: 15,
+    marginTop: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 3,
+    borderColor: black,
+    borderWidth: 1
+  }
 })
 
 function mapStateToProps(state) {
   return {
-    decks: state
+    decks: state  
   }
 }
 

@@ -3,7 +3,7 @@ import {View, TouchableOpacity, Text, StyleSheet, Platform, TextInput, Alert} fr
 import {createDeck} from '../actions'
 import {saveDeckTitle} from '../utils/api'
 import {connect} from 'react-redux'
-import { black, red} from '../utils/colors'
+import { black, green} from '../utils/colors'
 import { bold } from 'ansi-colors';
 
 
@@ -53,8 +53,9 @@ class AddDeck extends Component {
 					<Text style={styles.title}>New Title</Text>
 
 					<TextInput
-              style={styles.textInput}
-							placeholder="Type deck title here"
+              style={styles.input}
+              placeholder="Type deck title here"
+              maxLength={50}
 							value={this.state.title}
 							onChangeText={(title) => this.setState({title})}
 					/>
@@ -69,10 +70,7 @@ class AddDeck extends Component {
 				</View>
 		)
 	}
-
 }
-
-
 
 const styles = StyleSheet.create({
 	container: {
@@ -89,26 +87,30 @@ const styles = StyleSheet.create({
 	button: {
 		height: 60,
     width: 200,
-    backgroundColor: '#aaa',
+    backgroundColor: green,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
     marginTop: 48,
     borderRadius: 3
   },
-  textInput: {
-    height: 40,
-    fontSize: 15,
-    marginTop: 32,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   title: {
     fontSize: 24,
     justifyContent: 'center',
     alignItems: 'center',
     color: black
-  }
+  },
+  input: {
+    height: 40,
+    width: 300,
+    fontSize: 15,
+    marginTop: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 3,
+    borderColor: black,
+    borderWidth: 1
+  },
 })
 
 

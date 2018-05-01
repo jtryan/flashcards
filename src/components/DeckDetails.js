@@ -6,6 +6,10 @@ import { black, white, red, green, orange } from '../utils/colors'
 
 
 class DeckDetails extends Component {
+  static navigationOptions = {
+    title: 'Quiz',
+  };
+
   render() {
     const { title } = this.props.navigation.state.params
     const questions = this.props.decks[title].questions
