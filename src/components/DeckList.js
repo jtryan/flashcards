@@ -8,6 +8,10 @@ import DeckCard from './DeckCard'
 
 class DeckList extends Component {
 
+	static navigationOptions = {
+    title: 'Flash Cards',
+  };
+
 	state = {
 		ready: false
 	}
@@ -53,7 +57,8 @@ function mapStateToProps(state) {
 
 const styles = StyleSheet.create({
 	deck: {
-		flexDirection: 'row',
+    flexDirection: 'row',
+    flex: 1,
 		height: Dimensions.get('window').height
 	},
 });

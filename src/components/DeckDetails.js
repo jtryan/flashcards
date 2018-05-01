@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import { Text, View, Platform, StyleSheet, TouchableOpacity } from 'react-native'
 import { fetchDeck } from '../utils/api'
 import { connect } from 'react-redux'
-import { black, white } from '../utils/colors'
+import { black, white, red } from '../utils/colors'
 
 
 class DeckDetails extends Component {
-
+  // static navigationOptions = {
+  //   title: 'Cards',
+  //   headerMode: 'none'
+  // };
 
   render() {
     const { title } = this.props.navigation.state.params
@@ -15,11 +18,11 @@ class DeckDetails extends Component {
     return (
       <View style={styles.container}>
         <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{fontSize: 24}}>{title}</Text>
-          <Text style={{fontSize: 18}}>{questions.length} cards</Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text>{questions.length} cards</Text>
         </View>
         
-        <TouchableOpacity 
+        {/* <TouchableOpacity 
           style={styles.addButton}
           onPress={() => {
             this.props.navigation.navigate('AddQuestion', {
@@ -40,41 +43,50 @@ class DeckDetails extends Component {
           }}
         >
           <Text>Start Quiz</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     )
   }
 }
 
 styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20
-  },
   title: {
-
-
-  },
-  addButton: {
-    height: 50,
-    backgroundColor: 'white',
-    justifyContent: 'center', 
-    alignItems: 'center',
-    margin: 40,
-    padding: 10,
-    borderRadius: 4
-  },
-  startButton: {
-    height: 50,
-    backgroundColor: 'white',
-    justifyContent: 'center', 
-    alignItems: 'center',
-    marginLeft: 40,
-    marginRight: 40,
-    padding: 10,
-    borderRadius: 4
+    fontSize: 24
   }
 })
+// styles = StyleSheet.create({
+//   container: {
+//     flex: 1
+//   },
+//   title: {
+//     fontSize: 24,
+//     color: black
+//   },
+  // subHeading: {
+  //   fontSize: 18,
+  //   color: red
+
+  // },
+  // addButton: {
+  //   height: 50,
+  //   backgroundColor: 'white',
+  //   justifyContent: 'center', 
+  //   alignItems: 'center',
+  //   margin: 40,
+  //   padding: 10,
+  //   borderRadius: 4
+  // },
+  // startButton: {
+  //   height: 50,
+  //   backgroundColor: 'white',
+  //   justifyContent: 'center', 
+  //   alignItems: 'center',
+  //   marginLeft: 40,
+  //   marginRight: 40,
+  //   padding: 10,
+  //   borderRadius: 4
+  // }
+// })
 
     
 function mapStateToProps(state) {

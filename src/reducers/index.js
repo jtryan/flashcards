@@ -17,15 +17,18 @@ function decks (state = {}, action) {
         ...state,
         ...action.deck
       }
-      case CREATE_DECK:
+    case CREATE_DECK:
       return {
         ...state,
-        ...action.title
+        ...action.deck
       }
-      case ADD_CARD_TO_DECK:
+    case ADD_CARD_TO_DECK:
+      const {title, questions, question, answer} = action.params;
+      const newQuestions = JSON.parse(JSON.stringify(questions)).concat([ { question, answer } ]);
+
       return {
         ...state,
-        ...action.entry
+        [title]: {...state[title], questions: newQuestions},
       }
     default:
       return state

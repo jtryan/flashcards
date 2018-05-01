@@ -16,9 +16,9 @@ export const getDeck = deck => ({
   deck,
 })
 
-export const createDeck = title => ({
+export const createDeck = deck => ({
   type: CREATE_DECK,
-  title,
+  deck,
 })
 
 export const addCardToDeck = params => ({

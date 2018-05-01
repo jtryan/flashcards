@@ -35,19 +35,30 @@ export function fetchDecks() {
 }
 
 export function fetchDeck(title) {
-    return AsyncStorage.getItem(DECKS_STORAGE_KEY, title)
-    .then(results =>{
-        return results === null ? console.log(`ERROR: ${title} not found!`) : JSON.parse(results)
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY, title)
+  .then(results =>{
+    return results === null ? console.log(`ERROR: ${title} not found!`) : JSON.parse(results)
+})
+
+}
+
+export function saveDeckTitle(deck) {
+  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(deck))
+}
+
+export function addCard({card, deckTitle}) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY, (err, result) => {
+    let decks = JSON.parse(result)
+
+    let questions = JSON.parse(JSON.stringify(decks[deckTitle].questions))
+    questions[questions.length] = card
+
+    let value = JSON.stringify({
+      [deckTitle]: {title: deckTitle, questions: questions}
     })
 
-}
-
-export function saveDeckTitle(title) {
-    return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, title)
-}
-
-export function addCardToDeck(params) {
-  
+    AsyncStorage.mergeItem(DECKS_STORAGE_KEY, value)
+  })
 }
 
 export function initialData() {

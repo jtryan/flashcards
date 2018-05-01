@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Platform, StatusBar } from 'react-native'
 import { Constants } from 'expo'
-import { createStore } from 'redux'
+import { createStore, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { purple, white } from './src/utils/colors'
 import reducer from './src/reducers'
@@ -65,7 +65,6 @@ const MainNavigator = StackNavigator({
   },
   DeckDetails: {
     screen: DeckDetails,
-    title: 'HELP',
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
@@ -75,7 +74,6 @@ const MainNavigator = StackNavigator({
   },
   TakeQuiz: {
     screen: TakeQuiz,
-    title: 'HELP',
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
@@ -85,7 +83,6 @@ const MainNavigator = StackNavigator({
   },
   AddQuestion: {
     screen: AddQuestion,
-    title: 'HELP',
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
@@ -95,10 +92,13 @@ const MainNavigator = StackNavigator({
   }
 })
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 export default class App extends React.Component {
+
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer, composeEnhancers())}>
         <View style={{flex: 1}}>
           <FlashStatusBar backgroundColor={purple} barStyle="light-content" />
           <MainNavigator />
