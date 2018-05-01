@@ -20,13 +20,10 @@ export default class DeckCard extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
 	deck: {
 		flexDirection: 'row',
 		marginTop: 16,
-		height: 120,
+		height: 100,
 		backgroundColor: '#aaa',
 		justifyContent: 'center',
 		alignItems: 'center'
@@ -40,6 +37,7 @@ const styles = StyleSheet.create({
   },
   subHeading: {
     fontSize: 18,
+    marginTop: 16,
     justifyContent: 'center',
     alignItems: 'center',
     color: red

@@ -57,7 +57,6 @@ function mapStateToProps(state) {
 
 const styles = StyleSheet.create({
 	deck: {
-    flexDirection: 'row',
     flex: 1,
 		height: Dimensions.get('window').height
 	},

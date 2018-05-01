@@ -48,40 +48,22 @@ class AddDeck extends Component {
 	render() {
 		return (
 
-        <View style={{flex: 1,
-                      justifyContent: 'center',
-                      alignItems: 'center'}}>
-					<Text style={{fontSize: 24,
-                justifyContent: 'center',
-                alignItems: 'center',
-                color: black}}>New Title</Text>
+        <View style={styles.container}>
+
+					<Text style={styles.title}>New Title</Text>
+
 					<TextInput
-              style={{height: 40,
-                      fontSize: 15,
-                      marginTop: 32,
-                      justifyContent: 'center',
-                      alignItems: 'center'}}
+              style={styles.textInput}
 							placeholder="Type deck title here"
 							value={this.state.title}
 							onChangeText={(title) => this.setState({title})}
 					/>
 
 					<TouchableOpacity
-              style={{
-                height: 60,
-                width: 200,
-                backgroundColor: '#aaa',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 16,
-                marginTop: 48,
-                borderRadius: 3}}
+              style={styles.button}
 							onPress={this.verifyTitle}
 					>
-            <Text style={{fontSize: 18,
-                        fontWeight: 'bold',
-                        justifyContent: 'center',
-                        alignItems: 'center'}}>Add Deck</Text>
+            <Text style={styles.btnText}>Add Deck</Text>
 					</TouchableOpacity>
 
 				</View>
@@ -91,7 +73,8 @@ class AddDeck extends Component {
 }
 
 
-styles = StyleSheet.create({
+
+const styles = StyleSheet.create({
 	container: {
 		flex: 1,
     justifyContent: 'center',

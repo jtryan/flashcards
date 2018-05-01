@@ -2,15 +2,10 @@ import React, { Component } from 'react'
 import { Text, View, Platform, StyleSheet, TouchableOpacity } from 'react-native'
 import { fetchDeck } from '../utils/api'
 import { connect } from 'react-redux'
-import { black, white, red } from '../utils/colors'
+import { black, white, red, green, orange } from '../utils/colors'
 
 
 class DeckDetails extends Component {
-  // static navigationOptions = {
-  //   title: 'Cards',
-  //   headerMode: 'none'
-  // };
-
   render() {
     const { title } = this.props.navigation.state.params
     const questions = this.props.decks[title].questions
@@ -19,10 +14,10 @@ class DeckDetails extends Component {
       <View style={styles.container}>
         <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
           <Text style={styles.title}>{title}</Text>
-          <Text>{questions.length} cards</Text>
+          <Text style={styles.subHeading}>{questions.length} cards</Text>
         </View>
         
-        {/* <TouchableOpacity 
+        <TouchableOpacity 
           style={styles.addButton}
           onPress={() => {
             this.props.navigation.navigate('AddQuestion', {
@@ -31,7 +26,7 @@ class DeckDetails extends Component {
             })
           }}
         >
-          <Text>Add Card</Text>
+          <Text style={styles.btnText}>Add Card</Text>
         </TouchableOpacity>
         <TouchableOpacity 
           style={styles.startButton}
@@ -42,51 +37,60 @@ class DeckDetails extends Component {
             })
           }}
         >
-          <Text>Start Quiz</Text>
-        </TouchableOpacity> */}
+          <Text style={styles.btnText}>Start Quiz</Text>
+        </TouchableOpacity>
       </View>
     )
   }
 }
 
-styles = StyleSheet.create({
-  title: {
-    fontSize: 24
-  }
-})
-// styles = StyleSheet.create({
-//   container: {
-//     flex: 1
-//   },
-//   title: {
-//     fontSize: 24,
-//     color: black
-//   },
-  // subHeading: {
-  //   fontSize: 18,
-  //   color: red
 
-  // },
-  // addButton: {
-  //   height: 50,
-  //   backgroundColor: 'white',
-  //   justifyContent: 'center', 
-  //   alignItems: 'center',
-  //   margin: 40,
-  //   padding: 10,
-  //   borderRadius: 4
-  // },
-  // startButton: {
-  //   height: 50,
-  //   backgroundColor: 'white',
-  //   justifyContent: 'center', 
-  //   alignItems: 'center',
-  //   marginLeft: 40,
-  //   marginRight: 40,
-  //   padding: 10,
-  //   borderRadius: 4
-  // }
-// })
+const styles = StyleSheet.create({
+  container: {
+		flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  title: {
+    fontSize: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: black
+  },
+  subHeading: {
+    fontSize: 18,
+    marginTop: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: red,
+  },
+  addButton: {
+    height: 60,
+    width: 200,
+    backgroundColor: 'orange',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+    marginTop: 48,
+    borderRadius: 3
+  },
+  startButton: {
+    height: 60,
+    width: 200,
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+    marginTop: 48,
+    borderRadius: 3
+  },
+  btnText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+})
 
     
 function mapStateToProps(state) {
