@@ -1,14 +1,18 @@
 import React from 'react'
 import { StyleSheet, View, Platform, StatusBar } from 'react-native'
 import { Constants } from 'expo'
-import { createStore } from 'redux'
+import { createStore, compose } from 'redux'
 import { Provider } from 'react-redux'
-import { purple, white } from './utils/colors'
-import reducer from './reducers'
+import { purple, white } from './src/utils/colors'
+import reducer from './src/reducers'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import DeckList from './components/DeckList'
-import AddDeck from './components/AddDeck'
-import { Ionicons, FontAwesome } from '@expo/vector-icons'
+import DeckList from './src/components/DeckList'
+import AddDeck from './src/components/AddDeck'
+import DeckDetails from './src/components/DeckDetails'
+import AddQuestion from './src/components/AddQuestion'
+import TakeQuiz from './src/components/TakeQuiz'
+import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
+import { setLocalNotification } from './src/utils/notification'
 
 
 function FlashStatusBar ({backgroundColor, ...props}) {
@@ -24,14 +28,16 @@ const Tabs = TabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-outline' size={30} color={tintColor} />,
+      showIcon: true
     },
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
-      tabBarLabel: 'New dEck',
-      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
+      tabBarLabel: 'New Deck',
+      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />,
+      showIcon: true
     },
   },
 }, {
@@ -58,21 +64,44 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
   },
-  // EntryDetail: {
-  //   screen: EntryDetail,
-  //   navigationOptions: {
-  //     headerTintColor: white,
-  //     headerStyle: {
-  //       backgroundColor: purple,
-  //     }
-  //   }
-  // }
+  DeckDetails: {
+    screen: DeckDetails,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  },
+  TakeQuiz: {
+    screen: TakeQuiz,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  },
+  AddQuestion: {
+    screen: AddQuestion,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  }
 })
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer, composeEnhancers())}>
         <View style={{flex: 1}}>
           <FlashStatusBar backgroundColor={purple} barStyle="light-content" />
           <MainNavigator />
