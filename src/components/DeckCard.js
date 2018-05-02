@@ -1,5 +1,5 @@
 import React, { Component }from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Platform} from 'react-native';
 import { black, red } from '../utils/colors'
 
 export default class DeckCard extends Component {
@@ -32,14 +32,21 @@ const styles = StyleSheet.create({
     fontSize: 24,
     justifyContent: 'center',
     alignItems: 'center',
-    color: black
-
+    color: black,
+    ...Platform.select({
+      ios: {fontFamily: 'Arial'},
+      android: {fontFamily: 'Roboto'},
+    }),
   },
   subHeading: {
     fontSize: 18,
     marginTop: 16,
     justifyContent: 'center',
     alignItems: 'center',
-    color: red
+    color: red,
+    ...Platform.select({
+      ios: {fontFamily: 'Arial'},
+      android: {fontFamily: 'Roboto'},
+    }),
   }
 })

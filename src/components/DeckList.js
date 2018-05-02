@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, TouchableOpacity, Text, StyleSheet, Platform, FlatList, Dimensions} from 'react-native'
+import {View, TouchableOpacity, Text, StyleSheet, Platform, FlatList, Dimensions, ScrollView} from 'react-native'
 import {connect} from 'react-redux'
 import {fetchDecks} from '../utils/api'
 import {getDecks} from '../actions/index'
@@ -37,13 +37,13 @@ class DeckList extends Component {
 	render() {
 		const {decks} = this.props
 		return (
-			<View>
+			<ScrollView>
 				<FlatList
 					data={Object.values(decks).sort((a, b) => a.title > b.title)}
 					renderItem={this.renderItem}
 					keyExtractor={(item, index) => item.title}
 				/>
-			</View>
+			</ScrollView>
 		)
 	}
 

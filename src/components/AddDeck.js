@@ -4,7 +4,6 @@ import {createDeck} from '../actions'
 import {saveDeckTitle} from '../utils/api'
 import {connect} from 'react-redux'
 import { black, green} from '../utils/colors'
-import { bold } from 'ansi-colors';
 
 
 class AddDeck extends Component {
@@ -82,7 +81,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    ...Platform.select({
+      ios: {fontFamily: 'Arial'},
+      android: {fontFamily: 'Roboto'},
+    }),
   },
 	button: {
 		height: 60,
@@ -92,13 +95,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     marginTop: 48,
-    borderRadius: 3
+    borderRadius: 3,
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     justifyContent: 'center',
     alignItems: 'center',
-    color: black
+    color: black,
+    ...Platform.select({
+      ios: {fontFamily: 'Arial'},
+      android: {fontFamily: 'Roboto'},
+    }),
   },
   input: {
     height: 40,
@@ -109,16 +116,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 3,
     borderColor: black,
-    borderWidth: 1
+    borderWidth: 1,
   },
 })
-
 
 function mapStateToProps(state) {
 	return {
 		decks: state
 	}
 }
-
 
 export default connect(mapStateToProps)(AddDeck)

@@ -12,6 +12,7 @@ import DeckDetails from './src/components/DeckDetails'
 import AddQuestion from './src/components/AddQuestion'
 import TakeQuiz from './src/components/TakeQuiz'
 import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
+import { setLocalNotification } from './src/utils/notification'
 
 
 function FlashStatusBar ({backgroundColor, ...props}) {
@@ -95,7 +96,9 @@ const MainNavigator = StackNavigator({
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default class App extends React.Component {
-
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={createStore(reducer, composeEnhancers())}>

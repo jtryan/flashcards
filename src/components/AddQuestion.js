@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TextInput, Text, TouchableOpacity, StyleSheet, Alert, View } from 'react-native'
+import { TextInput, Text, TouchableOpacity, StyleSheet, Alert, View, Platform} from 'react-native'
 import { addCardToDeck } from '../actions'
 import { addCard } from '../utils/api'
 import { connect } from 'react-redux'
@@ -99,19 +99,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     marginTop: 48,
-    borderRadius: 3
+    borderRadius: 3,
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     justifyContent: 'center',
     alignItems: 'center',
-    color: black
+    color: black,
+    ...Platform.select({
+      ios: {fontFamily: 'Arial'},
+      android: {fontFamily: 'Roboto'},
+    }),
   },
   btnText: {
     fontSize: 18,
     fontWeight: 'bold',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    ...Platform.select({
+      ios: {fontFamily: 'Arial'},
+      android: {fontFamily: 'Roboto'},
+    }),
   },
   textInput: {
     height: 40,
