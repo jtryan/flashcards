@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableOpacity, Platform } from 'react-native'
 import { connect } from 'react-redux'
+
 import { black, red, green } from '../utils/colors'
 
 
@@ -53,7 +54,6 @@ class TakeQuiz extends Component {
     const {questions} = this.props.navigation.state.params
     const { correct, index, showAnswer } = this.state
     const moreQuestions = index < questions.length
-    const currentQuestion = questions.length - index
 
     return (
       <View style={styles.container}>
@@ -184,14 +184,3 @@ const styles = StyleSheet.create({
 })
 
 export default connect()(TakeQuiz)
-
-
-/*
-
-
-...Platform.select({
-      ios: {fontFamily: 'Arial'},
-      android: {fontFamily: 'Roboto'},
-    }),
-
-    */

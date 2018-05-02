@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Text, View, Platform, StyleSheet, TouchableOpacity } from 'react-native'
-import { fetchDeck } from '../utils/api'
 import { connect } from 'react-redux'
-import { black, white, red, green, orange } from '../utils/colors'
+
+import { black, red, green, orange } from '../utils/colors'
 
 
 class DeckDetails extends Component {
@@ -59,7 +59,11 @@ const styles = StyleSheet.create({
     fontSize: 32,
     justifyContent: 'center',
     alignItems: 'center',
-    color: black
+    color: black,
+		...Platform.select({
+			ios: {fontFamily: 'Arial'},
+			android: {fontFamily: 'Roboto'},
+		}),
   },
   subHeading: {
     fontSize: 18,
@@ -67,11 +71,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     color: red,
+		...Platform.select({
+			ios: {fontFamily: 'Arial'},
+			android: {fontFamily: 'Roboto'},
+		}),
   },
   addButton: {
     height: 60,
     width: 200,
-    backgroundColor: 'orange',
+    backgroundColor: orange,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
   startButton: {
     height: 60,
     width: 200,
-    backgroundColor: 'green',
+    backgroundColor: green,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
@@ -92,7 +100,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+		...Platform.select({
+			ios: {fontFamily: 'Arial'},
+			android: {fontFamily: 'Roboto'},
+		}),
   },
 })
 

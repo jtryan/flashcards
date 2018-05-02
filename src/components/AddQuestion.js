@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { TextInput, Text, TouchableOpacity, StyleSheet, Alert, View, Platform} from 'react-native'
+import { connect } from 'react-redux'
+
 import { addCardToDeck } from '../actions'
 import { addCard } from '../utils/api'
-import { connect } from 'react-redux'
-import { black, white, green } from '../utils/colors'
+import { black, green } from '../utils/colors'
 
 class AddQuestion extends Component {
 
@@ -58,7 +59,7 @@ class AddQuestion extends Component {
 					<TextInput
 							style={styles.textInput}
 							placeholder="Type question here"
-							value={this.state.question}
+							value={question}
               onChangeText={(question) => this.setState({question})}
               multiline={true}
 					/>
@@ -66,7 +67,7 @@ class AddQuestion extends Component {
 					<TextInput
 							style={styles.textInput}
 							placeholder="Type answer here"
-							value={this.state.answer}
+							value={answer}
               onChangeText={(answer) => this.setState({answer})}
               multiline={true}
 					/>

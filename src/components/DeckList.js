@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {View, TouchableOpacity, Text, StyleSheet, Platform, FlatList, Dimensions, ScrollView} from 'react-native'
 import {connect} from 'react-redux'
+
 import {fetchDecks} from '../utils/api'
 import {getDecks} from '../actions/index'
 import DeckCard from './DeckCard'
@@ -12,14 +13,9 @@ class DeckList extends Component {
     title: 'Flash Cards',
   };
 
-	state = {
-		ready: false
-	}
-
 	componentDidMount() {
 		const {dispatch} = this.props
 		fetchDecks().then(decks => dispatch(getDecks(decks)))
-				.then(() => this.setState(() => ({ready: true})))
 	}
 
 	renderItem = ({item}) => (

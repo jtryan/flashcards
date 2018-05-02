@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
-import {View, TouchableOpacity, Text, StyleSheet, Platform, TextInput, Alert} from 'react-native'
-import {createDeck} from '../actions'
-import {saveDeckTitle} from '../utils/api'
-import {connect} from 'react-redux'
-import { black, green} from '../utils/colors'
+import React, { Component } from 'react'
+import { View, TouchableOpacity, Text, StyleSheet, Platform, TextInput, Alert} from 'react-native'
+import { connect } from 'react-redux'
+
+import { createDeck } from '../actions'
+import { saveDeckTitle } from '../utils/api'
+import { black, green } from '../utils/colors'
 
 
 class AddDeck extends Component {
@@ -47,26 +48,26 @@ class AddDeck extends Component {
 	render() {
 		return (
 
-        <View style={styles.container}>
+			<View style={styles.container}>
 
-					<Text style={styles.title}>New Title</Text>
+				<Text style={styles.title}>New Title</Text>
 
-					<TextInput
-              style={styles.input}
-              placeholder="Type deck title here"
-              maxLength={50}
-							value={this.state.title}
-							onChangeText={(title) => this.setState({title})}
-					/>
+				<TextInput
+						style={styles.input}
+						placeholder="Type deck title here"
+						maxLength={50}
+						value={this.state.title}
+						onChangeText={(title) => this.setState({title})}
+				/>
 
-					<TouchableOpacity
-              style={styles.button}
-							onPress={this.verifyTitle}
-					>
-            <Text style={styles.btnText}>Add Deck</Text>
-					</TouchableOpacity>
+				<TouchableOpacity
+						style={styles.button}
+						onPress={this.verifyTitle}
+				>
+					<Text style={styles.btnText}>Add Deck</Text>
+				</TouchableOpacity>
 
-				</View>
+			</View>
 		)
 	}
 }
